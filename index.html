@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <!--这里是并不懂HTML、javascript、CSS的小喾苦现用现搜做出来的垃圾页面-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://www.bilibili.com/favicon.ico" />
@@ -19,7 +20,7 @@
         <div id="help_div">
             <p class="help_p">
                 <br />
-                本工具用于分享哔哩哔哩视频，可去除手机上无哔哩哔哩APP的用户观看时
+                本工具用于分享哔哩哔哩视频，使用本工具可去除手机上上无哔哩哔哩APP的用户观看时
             </p>
             <div class="mplayer-widescreen-callapp"><a href="https://d.bilibili.com/download_app.html" style="text-decoration: none;color: #fff;" target="_blank">打开App，看高清全屏</a></div>
             <p class="help_p">
@@ -29,13 +30,14 @@
             </p>
         </div>
         <p class="end_p" id="end_p">
-            <a href="/" target="_blank" class="end_a">本网页由小喾苦制作</a>&nbsp;<a href="https://www.google.cn/chrome/" target="_blank" class="end_a">推荐使用Chrome浏览器</a><br />
+            <a href="/" target="_blank" class="end_a">本页面由小喾苦制作</a>&nbsp;<a href="https://www.google.cn/chrome/" target="_blank" class="end_a">推荐使用Chrome浏览器</a><br />
             <a href="https://xkk1.github.io/" target="_blank" class="end_a">小喾苦的个人网站</a>&nbsp;<a href="https://space.bilibili.com/513689605" target="_blank" class="end_a">小喾苦的个人空间_哔哩哔哩</a><br />
             <a href="https://github.com/xkk1/bilishare" target="_blank" class="end_a">GitHub开源地址</a>&nbsp;<a href="https://github.com/xkk1/bilishare/issues" target="_blank" class="end_a">欢迎来提建议</a><br />
         </p>
         <input id='copy_input'  style='opacity: 0;position: absolute;' type="text">
     </main>
     <script>
+/*这里是并不懂HTML、javascript、CSS的小喾苦现用现搜做出来的垃圾页面*/
 var biliplay_div = document.getElementById("biliplay");
 var BV_input = document.getElementById("BV");
 var show_info_div = document.getElementById("show_info");
@@ -146,7 +148,8 @@ function htmlDecodeByRegExp(str){
     return temp;  
 }
 function change_details(json){
-    console.log(json);
+    /**/
+    // console.log(json);
     var details_div = document.getElementById("details_div");
     details_div.innerHTML = `<p>
 <strong>`+json.data.title+`</strong><br />
