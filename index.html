@@ -205,7 +205,7 @@ function show(BV){
 <a class="bili_a" href="https://www.jijidown.com/video/`+bvid+`" target="_blank">唧唧</a>&nbsp;
 <a class="bili_a" href="https://www.ibilibili.com/video/`+bvid+`" target="_blank">爱哔哩</a>&nbsp;
 <a class="bili_a" href="https://www.flvcd.com/parse.php?format=&kw=`+encode_bilibili_URL+`" target="_blank">硕鼠</a>&nbsp;
-<a class="bili_a" href="https://cli.im/api/qrcode/code?text=`+encode_bilibili_URL+`" target="_blank">二维码生成</a>&nbsp;
+<a class="bili_a" href="https://cli.im/api/qrcode/code?text=`+encodeURIComponent(document.URL)+`" target="_blank">二维码生成</a>&nbsp;
 `;
     details_div.innerHTML = "";
     load_details_script(bvid);
