@@ -252,11 +252,11 @@ function checkApp(a){
 	document.body.appendChild(newiframe);
 }
 function checkAppDelay(oldtime){
-	newtime=Date.now();
-	if((newtime-oldtime)<1100){
-		// createUpdateNotice("您可能未安装App","F00");
+    newtime=Date.now();
+    if((newtime-oldtime)<1100){
+        // createUpdateNotice("您可能未安装App","F00");
         alert("您可能未安装App");
-	}
+    }
 }
 
 if (getQueryVariable("BV")){
