@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -190,7 +189,7 @@ function show(BV){
     biliplay_div.innerHTML = '<div style="position: relative;width: 100%;height: 0;padding-bottom: 75%;margin-bottom: 30px;">\n\
 <iframe src="//player.bilibili.com/player.html?bvid='+bvid+'" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;"> </iframe>\n\
 </div>\n\
-<p style="text-align: center;font-size: 18px;"><a class="bili_a" href="https://www.bilibili.com/video/'+bvid+'">访问视频原网页</a></p>\n\
+<p style="text-align: center;font-size: 18px;"><a class="bili_a" href="https://www.bilibili.com/video/'+bvid+'">访问视频原网页</a>&nbsp;<a class="bili_a" href="bilibili://video/'+bvid+'" onclick="checkApp(this);">APP内打开</a></p>\n\
 <div id="details_div"></div>';
     changeURLStatic('BV', BV);
     BV_input.value = bvid;
@@ -243,9 +242,27 @@ function enter_OK(){
 	}
 }
 
+// copy from biliplus https://www.biliplus.com/video/BV1La411S7uw
+function checkApp(a){
+	newiframe=document.createElement("iframe");
+	newiframe.style.display="none";
+	newiframe.src=a.href;
+	oldtime=Date.now();
+	setTimeout(function(){checkAppDelay(oldtime)},1000);
+	document.body.appendChild(newiframe);
+}
+function checkAppDelay(oldtime){
+	newtime=Date.now();
+	if((newtime-oldtime)<1100){
+		// createUpdateNotice("您可能未安装App","F00");
+        alert("您可能未安装App");
+	}
+}
+
 if (getQueryVariable("BV")){
     show(getQueryVariable("BV"))
 }
+
     </script>
     <style>
 *{margin: 0;padding: 0;}
