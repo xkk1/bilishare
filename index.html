@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -43,11 +44,15 @@ var biliplay_div = document.getElementById("biliplay");
 var BV_input = document.getElementById("BV");
 var show_info_div = document.getElementById("show_info");
 var copy_input = document.getElementById("copy_input");  //input 的ID
-function copy(string){
+function copy(string, info){
     copy_input.value = string;
     copy_input.select(); //选择对象
     document.execCommand("Copy"); //执行浏览器复制命令 
-    alert("已尝试复制"); 
+    if(info == undefined){
+        alert("已尝试复制"); 
+    }else{
+        alert("已尝试复制" + info); 
+    }
 }
 // 更改URL不跳转
 
@@ -158,7 +163,9 @@ function change_details(json){
     // 2022-7-27 12:57 增加对 IE 11 的支持
     details_div.innerHTML = '<p>\n\
 <strong>'+json.data.title+'</strong><br />\n\
-UP主：<a class="bili_a" href="https://space.bilibili.com/'+json.data.owner.mid+'" target="_blank">'+json.data.owner.name+'</a>\n\
+UP主：<a class="bili_a" href="https://space.bilibili.com/'+json.data.owner.mid+'" target="_blank">'+json.data.owner.name+'</a>&nbsp;\
+<a class="UID_a" href="javascript:;" onclick="copy(\'UID'+json.data.owner.mid+'\', \'UID\')">UID'+json.data.owner.mid+'</a>&nbsp;\
+<a class="a" href="'+json.data.owner.face+'" referrerpolicy="no-referrer" rel="noreferrer" target="_blank">头像</a>\n\
 </p>\n\
 <p style="font-size: 14px;">\n\
 '+numberToString(json.data.stat.view)+'播放&nbsp;'+numberToString(json.data.stat.danmaku)+'弹幕&nbsp;'+numberToString(json.data.stat.reply)+'回复&nbsp;'+timestampToTime(json.data.ctime)+'<br />\n\
@@ -168,7 +175,7 @@ UP主：<a class="bili_a" href="https://space.bilibili.com/'+json.data.owner.mid
 '+htmlEncodeByRegExp(json.data.desc)+'\n\
 </p>\n\
 <p style="text-align: center;"><a  class="bili_a" href="'+json.data.pic+'" referrerpolicy="no-referrer" rel="noreferrer" target="_blank">视频封面(=・ω・=)</a></p>\n\
-<img class="pic" src="'+json.data.pic+'" object-fit="contain" referrerpolicy="no-referrer" alt="封面" title="封面" loading="lazy" />\n\
+<img class="pic" src="'+json.data.pic+'" object-fit="contain" referrerpolicy="no-referrer" alt="封面" title="封面" />\n\
 <br /><br /><hr /><br /><br />';
     document.title = json.data.title;
     var details_button_div = document.getElementById("details_button");
@@ -199,7 +206,7 @@ function show(BV){
     //encodeURIComponent(url); 转码
 	//unescape , decodeURI , decodeURIComponent  解码
     show_info_div.innerHTML = '\n\
-<input type="submit" class="button" value="复制本页链接" onclick="copy(document.URL)" />&nbsp;<a class="a" href="#">'+document.URL+'</a><br />\n\
+<input type="submit" class="button" value="复制本页链接" onclick="copy(document.URL)" />&nbsp;<a class="a" href="javascript:;">'+document.URL+'</a><br />\n\
 <input type="submit" class="button" value="复制纯视频链接" onclick="copy(\''+player_bilibili_URL+'\')" />&nbsp;<a class="a" href="'+player_bilibili_URL+'">'+player_bilibili_URL+'</a><br />\n\
 <div id="details_button"></div>\n\
 <br />\n\
@@ -255,7 +262,7 @@ function checkAppDelay(oldtime){
     newtime=Date.now();
     if((newtime-oldtime)<1100){
         // createUpdateNotice("您可能未安装App","F00");
-        alert("您可能未安装App");
+        alert("您可能未安装哔哩哔哩App");
     }
 }
 
@@ -304,6 +311,11 @@ h1{text-align: center}
     border: 1px solid #fb729f;
     border-radius: 5px;
     color: #fff;
+}
+.UID_a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #666666;
 }
 /* 未访问的链接 */
 .a:link {
