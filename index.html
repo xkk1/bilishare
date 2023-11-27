@@ -155,6 +155,18 @@ function htmlDecodeByRegExp(str){
     temp = temp.replace(/<br \/>\n/g,"\n");
     return temp;  
 }
+
+/**
+ * Escape RegExp string 用正则表达式实现字符串转义
+ * @param {string} string
+ * @return {string} 转义后的字符串
+ */
+function escapeRegExp(string) {
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions#escaping
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    //$&表示整个被匹配的字符串
+}
+
 function change_details(json){
     /**/
     // console.log(json);
@@ -179,8 +191,8 @@ UP主：<a class="bili_a" href="https://space.bilibili.com/'+json.data.owner.mid
     document.title = json.data.title;
     var details_button_div = document.getElementById("details_button");
     var player_bilibili_URL = "https://player.bilibili.com/player.html?bvid=BV"+getQueryVariable("BV");
-    details_button_div.innerHTML = '<input type="submit" class="button" value="复制标题+本页链接" onclick="copy(\'【'+json.data.title+'】'+document.URL+'\')" />&nbsp;\n\
-<input type="submit" class="button" value="复制标题+纯视频链接" onclick="copy(\'【'+json.data.title+'】'+player_bilibili_URL+'\')" />';
+    details_button_div.innerHTML = '<input type="submit" class="button" value="复制标题+本页链接" onclick="copy(\'【'+escapeRegExp(json.data.title)+'】'+document.URL+'\')" />&nbsp;\n\
+<input type="submit" class="button" value="复制标题+纯视频链接" onclick="copy(\'【'+escapeRegExp(json.data.title)+'】'+player_bilibili_URL+'\')" />';
 }
 function load_details_script(bvid) {
 	var oScript = document.createElement('script');
@@ -292,9 +304,13 @@ h1{text-align: center}
 #BV {
     width: 100%;
     font-size: 16px;
-    border: 1px solid #fb729f;
+    border: 2px solid #fb729f;
     border-radius: 5px 0px 0px 5px;
     display: flex;
+    outline: none; /* 去掉外边的蓝色边框 */
+}
+#BV:focus {
+    border: 3px solid #fb729f;
 }
 #OK {
     font-size: 16px;
